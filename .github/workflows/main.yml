@@ -26,9 +26,16 @@ jobs:
           git commit -m "Build front-end assets"
           git push -f origin deploy
       - name: Deploy to production
-        uses: appleboy/ssh-action@master
-        with:
-          username: root
-          host: 142.93.212.181
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd /var/www/html/project-qualification && ./server_deploy.sh'
+        env:
+          dest: 'root@142.93.212.181:/var/www/html/project-qualification/'
+        run: |
+          echo "${{secrets.DEPLOY_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+          rsync -chav --delete \
+            -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
+            --exclude /deploy_key \
+            --exclude /.git/ \
+            --exclude /.github/ \
+            --exclude /node_modules/ \
+            ./ ${{env.dest}}
+          ./server_deploy.sh
