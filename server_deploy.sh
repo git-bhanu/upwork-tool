@@ -15,6 +15,7 @@ echo "Deploying application ..."
     # Migrate database
     php artisan migrate --force
 
+    npm run prod
     # Note: If you're using queue workers, this is the place to restart them.
     # ...
 
