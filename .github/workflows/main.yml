@@ -31,4 +31,4 @@ jobs:
           username: root
           host: 143.244.138.16
           password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd /var/www/html && sudo server_deploy.sh'
+          script: 'cd /var/www/html && sudo ./server_deploy.sh'
