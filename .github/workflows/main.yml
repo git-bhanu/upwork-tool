@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to production
         uses: appleboy/ssh-action@master
         with:
-          username: root
-          host: 143.244.138.16
+          username: bhanu
+          host: 143.110.177.120
           password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd /var/www/html && chmod 777 server_deploy.sh && sudo ./server_deploy.sh'
+          script: 'cd /var/www/upwork-tool && sudo ./server_deploy.sh'
