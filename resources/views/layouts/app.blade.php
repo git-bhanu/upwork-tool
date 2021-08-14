@@ -15,14 +15,16 @@
     @livewireStyles
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="font-inter">
 @include('partial.header')
-<div id="app" class="bg-gray-100 min-h-full pb-24" style="margin-top: 92px">
+<div id="app" class="2xl:bg-gray-50 min-h-full pb-24" style="margin-top: 92px">
 @yield('content')
 </div>
 @livewireScripts
