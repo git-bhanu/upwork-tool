@@ -2,6 +2,6 @@
 
 @section('content')
     @include('partial.page-header', ['name' => 'Phrases'])
-    @livewire('thread')
+    @livewire('phrase')
 @endsection
 

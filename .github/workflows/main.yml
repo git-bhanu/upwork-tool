@@ -31,4 +31,4 @@ jobs:
           username: bhanu
           host: 143.110.177.120
           password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd /var/www/upwork-tool && sudo ./server_deploy.sh'
+          script: 'cd /var/www/upwork-tool && ./server_deploy.sh'
