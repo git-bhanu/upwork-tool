@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\PhraseController;
 use App\Models\Phrases;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -27,7 +29,7 @@ class Phrase extends Component
         $this->wordCount = Phrases::all()->count();
 
         return view('livewire.phrase', [
-            'phrases' => Phrases::latest()->paginate(10)
+            'phrases' => Phrases::latest()->paginate(20)
         ]);
     }
 
@@ -35,12 +37,24 @@ class Phrase extends Component
     {
         $validatedData = $this->validate();
         $validatedData['word'] = trim($validatedData['word']);
-        Phrases::firstOrCreate($validatedData);
-        $this->word = '';
+        (new \App\Models\Phrases)->Create([
+            'word' => $validatedData['word'],
+            'user' => Auth::user()->id,
+        ]);
+        $this->word = ' ';
     }
 
     public function deleteWord($id)
     {
-        $delete = Phrases::where('id', $id)->delete();
+        $phrase = Phrases::where('id', $id);
+
+        if ($phrase->user != null) {
+            if (Auth::user()->id === $phrase->user->id) {
+                $phrase->delete();
+            } else {
+                session()->flash('error', 'You are not authorized to delete '. $phrase->name . ' Phrase');
+            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+
     return view('welcome');
+
 })->name('home');
 
-Route::get('phrases', [\App\Http\Controllers\PhraseController::class, 'index'])->name('phrase.index');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/phrases', function () {
+        return view('phrases');
+    })->name('phrases');
+});
+
+require __DIR__.'/auth.php';

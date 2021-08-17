@@ -1,0 +1,15 @@
+nav {
+    background: $dark-color;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: grid;
+    place-items: center;
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 25px;
+        p {
+            margin: 0;
+        }
+    }
+}

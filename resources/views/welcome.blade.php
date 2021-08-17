@@ -1,10 +1,13 @@
-@extends('layouts.app')
-
-@section('content')
-    <div class="w-full mt-8">
-        <h1 class="text-4xl font-bold subpixel-antialiased text-center text-blue-500 mt-8 pt-6">Project Qualification</h1>
-        <div class="flex justify-center my-1">
-            @livewire('main.analyze-description')
+<x-guest-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden sm:rounded-lg">
+                <h2 class="text-green-500 text-3xl font-bold text-center mb-16">Project Qualification</h2>
+                @guest
+                    @livewire('login-signup')
+                @endguest
+            </div>
         </div>
     </div>
-@endsection
+</x-guest-layout>
+
