@@ -75,6 +75,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
+                {{ __('Phrases') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
+                {{ __('Analyze') }}
+            </x-responsive-nav-link>
         </div>
 
         @auth
