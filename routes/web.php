@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/phrases', function () {
         return view('phrases');
     })->name('phrases');
+
+    Route::get('/analyze', function () {
+        return view('analyze');
+    })->name('analyze');
 });
 
 require __DIR__.'/auth.php';

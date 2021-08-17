@@ -46,7 +46,7 @@ class Phrase extends Component
 
     public function deleteWord($id)
     {
-        $phrase = Phrases::where('id', $id);
+        $phrase = Phrases::findOrFail($id);
 
         if ($phrase->user != null) {
             if (Auth::user()->id === $phrase->user->id) {
