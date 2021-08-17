@@ -1,5 +1,9 @@
 <div class="flex items-center justify-center">
     <div class="lg:w-1/3 sm:w-full md:w-1/2 border-2 p-9 rounded-lg">
+        <div class="w-full flex items-center justify-center mb-5">
+            <img src="{{  asset('images/Krenovtae-logo.svg') }}" class="w-24 h-auto" alt="Company Logo">
+        </div>
+        <h3 class="text-2xl text-green-500 font-bold text-center mb-4">Speedy Sales</h3>
         <div class="w-full flex justify-center items-center">
             @if($signIn)
                 <a href="{{ route('google-auth') }}" class="cursor-pointer py-3 px-6 w-auto rounded shadow-md border-2 border-gray-50 flex justify-center w-10/12 sm:w-full flex justify-center items-center text-center">
@@ -12,11 +16,6 @@
                     Sign up with Google
                 </a>
             @endif
-        </div>
-
-
-        <div class="w-full flex items-center justify-center">
-            <img src="{{  asset('images/Krenovtae-logo.svg') }}" class="w-24 h-auto" alt="Company Logo" style="margin-top: 30px">
         </div>
     </div>
 </div>
