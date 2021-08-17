@@ -1,11 +1,5 @@
 <div class="flex items-center justify-center">
     <div class="lg:w-1/3 sm:w-full md:w-1/2 border-2 p-9 rounded-lg">
-        <div class="mb-5 flex justify-center items-center">
-            <a href="#" class="border-2 text-gray-700 text-decoration-none px-8  py-2 mr-3 transition  @if($signIn) border-blue-500 text-blue-500 font-bold @endif " wire:click="toggle(true)">Sign in</a>
-            <a href="#" class="border-2 text-gray-700 text-decoration-none px-8  py-2  transition @if(!$signIn) border-blue-500 text-blue-500 font-bold @endif " wire:click="toggle(false)">Sign up</a>
-        </div>
-        <h3 class="text-lg text-blue-600 font-bold text-center mb-4">@if($signIn) Sign in @else Sign up @endif to your account</h3>
-
         <div class="w-full flex justify-center items-center">
             @if($signIn)
                 <a href="{{ route('google-auth') }}" class="cursor-pointer py-3 px-6 w-auto rounded shadow-md border-2 border-gray-50 flex justify-center w-10/12 sm:w-full flex justify-center items-center text-center">
