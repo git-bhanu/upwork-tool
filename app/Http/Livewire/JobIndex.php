@@ -104,7 +104,7 @@ class JobIndex extends Component
                     $query->whereDate('upwork_created_date', '=', date($upwork_date[0]));
                 }
             })
-            ->orderBy($this->orderBy, 'asc')
+            ->orderBy($this->orderBy, 'desc')
             ->paginate(20);
 
         return view('livewire.job-index', [
