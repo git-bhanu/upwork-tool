@@ -47,6 +47,8 @@ class JobIndex extends Component
     public $orderBy = 'id';
     public $sortBy = 'asc';
 
+    public $filtered = [];
+
     protected $queryString = ['applied_by', 'type', 'ids', 'created_on', 'qualification_status', 'applied_date', 'orderBy', 'sortBy'];
 
     public function mount()
@@ -61,6 +63,65 @@ class JobIndex extends Component
         }
 
         $this->applied_options = $options;
+
+        $this->updatingIds($this->ids);
+        $this->updatingType($this->type);
+        $this->updatingAppliedDate($this->applied_date);
+        $this->updatingAppliedDate($this->applied_date);
+        $this->updatingAppliedBy($this->applied_by);
+        $this->updatingUpworkCreatedDate($this->upwork_created_date);
+        $this->updatingCreatedOn($this->created_on);
+        $this->updatingQualificationStatus($this->qualification_status);
+    }
+
+    public function updatingIds($value) {
+        if ($value != '') {
+            $this->filtered['ids'] = array('label' => "ID", 'value' =>  $value);
+        }
+    }
+
+    public function updatingType($value) {
+        if ($value != '') {
+            $this->filtered['type'] = array('label' => "Job Type", 'value' => $value);
+        }
+    }
+
+    public function updatingAppliedDate($value) {
+        if ($value != '') {
+            $this->filtered['applied_date'] = array('label' => "Applied Date", 'value' => $value);
+        }
+    }
+
+    public function updatingAppliedBy($value) {
+        if($value != '') {
+            $this->filtered['applied_by'] = array('label' => "Applied By", 'value' =>  $value);
+        }
+    }
+
+   public function updatingUpworkCreatedDate($value) {
+       if($value != '') {
+           $this->filtered['upwork_created_date'] = array('label' => "Job Created Date", 'value' => $value);
+       }
+    }
+
+    public function updatingCreatedOn($value) {
+        if($value != '') {
+            $this->filtered['created_on'] = array('label' => "Qualified Date", 'value' => $value);
+        }
+    }
+
+    public function updatingQualificationStatus($value) {
+        if($value != '') {
+            $this->filtered['qualification_status'] = array('label' => "Qualification Status", 'value' => $value);
+        }
+    }
+
+    private function findValueByKey($array, $value) {
+        foreach ($array as $key => $item) {
+            if ($item['key'] == $value) {
+                return $item['value'];
+            }
+        }
     }
 
     private function getDateArray($date_string)
@@ -121,5 +182,10 @@ class JobIndex extends Component
         } else {
             $this->sortBy = 'asc';
         }
+    }
+
+    public function removeFilter($action) {
+            $this->$action = '';
+            unset($this->filtered[$action]);
     }
 }

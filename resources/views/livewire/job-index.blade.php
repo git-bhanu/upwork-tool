@@ -46,6 +46,18 @@
             <x-input id="name" wire:model.lazy="upwork_created_date" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
         </div>
     </div>
+
+    @if(!empty($filtered))
+        <div class="border-2 border-gray-300 mx-6 py-4 rounded-lg">
+            <h3 class="font-bold text-3xl text-green-500 px-6">Filters </h3>
+            <div class="px-6 py-3 flex flex-wrap">
+                @foreach($filtered as $key => $filter)
+                    <x-filter-pill  wire:click="removeFilter( '{!! $key !!}' )" :label="$filter['label']" :value="$filter['value']" :action="$key"/>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <div class="px-6 py-3">
     <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
