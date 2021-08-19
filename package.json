@@ -28,6 +28,7 @@
         "@tailwindcss/forms": "^0.3.3",
         "@tailwindcss/line-clamp": "^0.2.1",
         "@tailwindcss/typography": "^0.4.1",
-        "bootstrap": "^5.1.0"
+        "bootstrap": "^5.1.0",
+        "flatpickr": "^4.6.9"
     }
 }

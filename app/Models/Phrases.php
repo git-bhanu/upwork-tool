@@ -20,7 +20,7 @@ class Phrases extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->toFormattedDateString();
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->diffForHumans('now');
     }
 
     public function user()
