@@ -44,9 +44,10 @@ class JobIndex extends Component
 
     public $upwork_created_date;
 
-    public $orderBy = 'upwork_created_date';
+    public $orderBy = 'id';
+    public $sortBy = 'asc';
 
-    protected $queryString = ['applied_by', 'type', 'ids', 'created_on', 'qualification_status', 'applied_date'];
+    protected $queryString = ['applied_by', 'type', 'ids', 'created_on', 'qualification_status', 'applied_date', 'orderBy', 'sortBy'];
 
     public function mount()
     {
@@ -104,12 +105,21 @@ class JobIndex extends Component
                     $query->whereDate('upwork_created_date', '=', date($upwork_date[0]));
                 }
             })
-            ->orderBy($this->orderBy, 'desc')
+            ->orderBy($this->orderBy, $this->sortBy)
             ->paginate(20);
 
         return view('livewire.job-index', [
             'jobs' => $queryJobs,
             'count' => $queryJobs->total()
         ]);
+    }
+
+    public function sortData($value) {
+        $this->orderBy = $value;
+        if ( $this->sortBy === 'asc' ) {
+            $this->sortBy = 'desc';
+        } else {
+            $this->sortBy = 'asc';
+        }
     }
 }

@@ -47,9 +47,9 @@
         </div>
     </div>
     <div class="px-6 py-3">
-    <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+    <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-</svg> Searching...</span></h3>
+</svg></span></h3>
     </div>
 
     <div class="flex flex-col">
@@ -60,25 +60,69 @@
                         <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-4 pr-0 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                ID
+                                <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'id') font-bold text-green-500 @endif" wire:click="sortData('id')">
+                                    ID
+                                        @if($sortBy === 'asc')
+                                            <x-down-arrow/>
+                                        @else
+                                            <x-up-arrow/>
+                                        @endif
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div class="flex items-center cursor-pointer">
+
                                 Job Name
+
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div  wire:click="sortData('qualified')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'qualified') font-bold text-green-500 @endif">
                                 Qualification
+                                    @if($sortBy === 'asc')
+                                        <x-down-arrow/>
+                                    @else
+                                        <x-up-arrow/>
+                                    @endif
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div wire:click="sortData('job_type')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'job_type') font-bold text-green-500 @endif">
                                 Job Type
+                                    @if($sortBy === 'asc')
+                                        <x-down-arrow/>
+                                    @else
+                                        <x-up-arrow/>
+                                    @endif
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div class="flex items-center cursor-pointer ">
+
                                 Applied By
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'created_at') font-bold text-green-500 @endif" wire:click="sortData('created_at')">
+
                                 Qualified Date
+                                    @if($sortBy === 'asc')
+                                        <x-down-arrow/>
+                                    @else
+                                        <x-up-arrow/>
+                                    @endif
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div wire:click="sortData('upwork_created_date')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'upwork_created_date') font-bold text-green-500 @endif" >
                                 Job Creation Date
+                                    @if($sortBy === 'asc')
+                                        <x-down-arrow/>
+                                    @else
+                                        <x-up-arrow/>
+                                    @endif
+                                </div>
+
                             </th>
                         </tr>
                         </thead>
