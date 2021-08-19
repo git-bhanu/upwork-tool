@@ -94,7 +94,7 @@ class JobIndex extends Component
 
     public function updatingAppliedBy($value) {
         if($value != '') {
-            $this->filtered['applied_by'] = array('label' => "Applied By", 'value' =>  $value);
+            $this->filtered['applied_by'] = array('label' => "Applied By", 'value' =>  $this->findValueByKey($this->applied_options, $value));
         }
     }
 
