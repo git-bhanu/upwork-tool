@@ -44,7 +44,7 @@ class JobIndex extends Component
 
     public $upwork_created_date;
 
-    public $orderBy = 'created_at';
+    public $orderBy = 'upwork_created_date';
 
     protected $queryString = ['applied_by', 'type', 'ids', 'created_on', 'qualification_status', 'applied_date'];
 
