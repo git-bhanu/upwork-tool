@@ -1,144 +1,148 @@
-<div>
-    <div class="my-4 px-6 grid grid-cols-3 gap-4">
-        {{-- Ids --}}
-        <div>
-            <x-label for="name" :value="__('Job ID')" />
-            <x-input id="name" wire:model.lazy="ids" class="block mt-1 w-full" type="text"  placeholder="Add ids (1, 3, 4)" autofocus/>
-        </div>
-        {{-- Type --}}
-        <div>
-            @php
-            $options = [['key'=> '', 'value' => 'All'], ['key'=> 'hourly', 'value' => 'Hourly'],['key'=> 'fixed-price', 'value' => 'Fixed Price']];
-            @endphp
-            <x-label for="name" :value="__('Job Type')" />
-            <x-select id="name" wire:model.lazy="type" class="block mt-1 w-full" type="text"  :options="$options"/>
-        </div>
-        {{-- Applied By --}}
-        <div>
-            <x-label for="name" :value="__('Applied By')" />
-            <x-select id="name" wire:model.lazy="applied_by" class="block mt-1 w-full" type="text"  :options="$applied_options"/>
-        </div>
-        {{-- Created Date --}}
-        <div>
-            <x-label for="name" :value="__('Qualified Date')" />
-            <x-input id="name" wire:model.lazy="created_on" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
-        </div>
+<div class="flex">
+    <div class="w-1/6">
+        <div class="my-4 px-6 grid grid-cols-1 gap-4">
+            {{-- Ids --}}
+            <div>
+                <x-label for="name" :value="__('Job ID')" />
+                <x-input id="name" wire:model.lazy="ids" class="block mt-1 w-full" type="text"  placeholder="Add ids (1, 3, 4)" autofocus/>
+            </div>
+            {{-- Type --}}
+            <div>
+                @php
+                    $options = [['key'=> '', 'value' => 'All'], ['key'=> 'hourly', 'value' => 'Hourly'],['key'=> 'fixed-price', 'value' => 'Fixed Price']];
+                @endphp
+                <x-label for="name" :value="__('Job Type')" />
+                <x-select id="name" wire:model.lazy="type" class="block mt-1 w-full" type="text"  :options="$options"/>
+            </div>
+            {{-- Applied By --}}
+            <div>
+                <x-label for="name" :value="__('Applied By')" />
+                <x-select id="name" wire:model.lazy="applied_by" class="block mt-1 w-full" type="text"  :options="$applied_options"/>
+            </div>
+            {{-- Created Date --}}
+            <div>
+                <x-label for="name" :value="__('Qualified Date')" />
+                <x-input id="name" wire:model.lazy="created_on" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
+            </div>
 
-        {{-- Qualification status --}}
-        <div>
-            @php
-                $options = [['key'=> '', 'value' => 'All'], ['key'=> '1', 'value' => 'Passed'],['key'=> '0', 'value' => 'Failed']];
-            @endphp
-            <x-label for="name" :value="__('Qualification status')" />
-            <x-select id="name" wire:model.lazy="qualification_status" class="block mt-1 w-full" type="text"  :options="$options"/>
-        </div>
+            {{-- Qualification status --}}
+            <div>
+                @php
+                    $options = [['key'=> '', 'value' => 'All'], ['key'=> '1', 'value' => 'Passed'],['key'=> '0', 'value' => 'Failed']];
+                @endphp
+                <x-label for="name" :value="__('Qualification status')" />
+                <x-select id="name" wire:model.lazy="qualification_status" class="block mt-1 w-full" type="text"  :options="$options"/>
+            </div>
 
-        {{-- Applied Date --}}
-        <div>
-            <x-label for="name" :value="__('Applied Date')" />
-            <x-input id="name" wire:model.lazy="applied_date" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
-        </div>
+            {{-- Applied Date --}}
+            <div>
+                <x-label for="name" :value="__('Applied Date')" />
+                <x-input id="name" wire:model.lazy="applied_date" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
+            </div>
 
 
-        {{-- Upwork Created Date --}}
-        <div>
-            <x-label for="name" :value="__('Upwork Job Created Date')" />
-            <x-input id="name" wire:model.lazy="upwork_created_date" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
-        </div>
-    </div>
-
-    @if(!empty($filtered))
-        <div class="border-2 border-gray-300 mx-6 py-4 rounded-lg">
-            <h3 class="font-bold text-3xl text-green-500 px-6">Filters </h3>
-            <div class="px-6 py-3 flex flex-wrap">
-                @foreach($filtered as $key => $filter)
-                    <x-filter-pill  wire:click="removeFilter( '{!! $key !!}' )" :label="$filter['label']" :value="$filter['value']" :action="$key"/>
-                @endforeach
+            {{-- Upwork Created Date --}}
+            <div>
+                <x-label for="name" :value="__('Upwork Job Created Date')" />
+                <x-input id="name" wire:model.lazy="upwork_created_date" class="block mt-1 w-full flatpickr" type="text"  placeholder="Select Date" autofocus/>
             </div>
         </div>
-    @endif
-
-    <div class="px-6 py-3">
-    <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-</svg></span></h3>
     </div>
 
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-4 pr-0 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'id') font-bold text-green-500 @endif" wire:click="sortData('id')">
-                                    ID
+    <div class="w-5/6 pr-4">
+
+
+        <div class="px-6 pt-4">
+            <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+</svg></span></h3>
+        </div>
+
+        @if(!empty($filtered))
+            <div class="border-gray-300 pt-3">
+                <div class="px-6 flex flex-wrap">
+                    @foreach($filtered as $key => $filter)
+                        <x-filter-pill  wire:click="removeFilter( '{!! $key !!}' )" :label="$filter['label']" :value="$filter['value']" :action="$key"/>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-4 pr-0 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'id') font-bold text-green-500 @endif" wire:click="sortData('id')">
+                                        ID
                                         @if($sortBy === 'asc')
                                             <x-down-arrow/>
                                         @else
                                             <x-up-arrow/>
                                         @endif
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex items-center cursor-pointer">
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center cursor-pointer">
 
-                                Job Name
+                                        Job Name
 
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div  wire:click="sortData('qualified')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'qualified') font-bold text-green-500 @endif">
-                                Qualification
-                                    @if($sortBy === 'asc')
-                                        <x-down-arrow/>
-                                    @else
-                                        <x-up-arrow/>
-                                    @endif
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div wire:click="sortData('job_type')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'job_type') font-bold text-green-500 @endif">
-                                Job Type
-                                    @if($sortBy === 'asc')
-                                        <x-down-arrow/>
-                                    @else
-                                        <x-up-arrow/>
-                                    @endif
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex items-center cursor-pointer ">
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div  wire:click="sortData('qualified')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'qualified') font-bold text-green-500 @endif">
+                                        Qualification
+                                        @if($sortBy === 'asc')
+                                            <x-down-arrow/>
+                                        @else
+                                            <x-up-arrow/>
+                                        @endif
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div wire:click="sortData('job_type')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'job_type') font-bold text-green-500 @endif">
+                                        Job Type
+                                        @if($sortBy === 'asc')
+                                            <x-down-arrow/>
+                                        @else
+                                            <x-up-arrow/>
+                                        @endif
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center cursor-pointer ">
 
-                                Applied By
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'created_at') font-bold text-green-500 @endif" wire:click="sortData('created_at')">
+                                        Applied By
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'created_at') font-bold text-green-500 @endif" wire:click="sortData('created_at')">
 
-                                Qualified Date
-                                    @if($sortBy === 'asc')
-                                        <x-down-arrow/>
-                                    @else
-                                        <x-up-arrow/>
-                                    @endif
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div wire:click="sortData('upwork_created_date')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'upwork_created_date') font-bold text-green-500 @endif" >
-                                Job Creation Date
-                                    @if($sortBy === 'asc')
-                                        <x-down-arrow/>
-                                    @else
-                                        <x-up-arrow/>
-                                    @endif
-                                </div>
+                                        Qualified Date
+                                        @if($sortBy === 'asc')
+                                            <x-down-arrow/>
+                                        @else
+                                            <x-up-arrow/>
+                                        @endif
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div wire:click="sortData('upwork_created_date')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'upwork_created_date') font-bold text-green-500 @endif" >
+                                        Job Creation Date
+                                        @if($sortBy === 'asc')
+                                            <x-down-arrow/>
+                                        @else
+                                            <x-up-arrow/>
+                                        @endif
+                                    </div>
 
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
                             @forelse($jobs as $job)
                                 <x-job.single-job :job="$job">
                                 </x-job.single-job>
@@ -150,13 +154,14 @@
                                 </tr>
 
                             @endforelse
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="my-6 px-7">
-        {{ $jobs->links() }}
+        <div class="my-6 px-7">
+            {{ $jobs->links() }}
+        </div>
     </div>
 </div>

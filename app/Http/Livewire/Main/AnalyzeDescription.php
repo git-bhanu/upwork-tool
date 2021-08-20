@@ -36,20 +36,16 @@ class AnalyzeDescription extends Component
 
     public function analyze()
     {
-        $this->issues = false;
+        $this->issues = [];
         $words = Phrases::all()->pluck('word')->toArray();
         foreach ($words as $word) {
-            if ($this->caseSensitive) {
-                $found = strpos( $this->description, $word );
-            } else {
-                $found = strripos( $this->description, $word );
-            }
-            if($found) {
-                $this->issues[] = array(
-                    'phrase' => $word,
-                );
-            }
+            $regex = '/\b'.$word.'\b/';
+            $found = preg_match_all($regex, $this->description, $issue, PREG_OFFSET_CAPTURE);
+
+            array_push($this->issues, $issue);
         }
+
+        dd($this->issues);
 
         if (empty($this->issues)) {
             session()->flash('success', 'No phrase match found in description. ');

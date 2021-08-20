@@ -6,7 +6,7 @@
         <div class="flex items-center">
             <div class="">
                 <div class="text-sm font-normal text-green-600 max-w-7xl">
-                    <a href="#" class="font-bold text-decoration-underline">{{ $title }}</a>
+                    <a href="{{ route('job.single', ['job' => $id]) }}" class="font-bold text-decoration-underline">{{ $title }}</a>
                 </div>
                 <div class="text-sm text-gray-500 max-w-7xl">
                     {{ $description }}
