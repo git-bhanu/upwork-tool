@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Main;
 
 use App\Models\Phrases;
 use Livewire\Component;
+use App\Services\AnalyzeUpworkJob;
 
 class AnalyzeDescription extends Component
 {
@@ -29,23 +30,13 @@ class AnalyzeDescription extends Component
         return view('livewire.main.analyze-description');
     }
 
-    public function removeFlash()
-    {
-
-    }
-
     public function analyze()
     {
         $this->issues = [];
-        $words = Phrases::all()->pluck('word')->toArray();
-        foreach ($words as $word) {
-            $regex = '/\b'.$word.'\b/';
-            $found = preg_match_all($regex, $this->description, $issue, PREG_OFFSET_CAPTURE);
 
-            array_push($this->issues, $issue);
-        }
+        $class = new AnalyzeUpworkJob($this->description);
 
-        dd($this->issues);
+        $this->issues = $class->analyze();
 
         if (empty($this->issues)) {
             session()->flash('success', 'No phrase match found in description. ');
