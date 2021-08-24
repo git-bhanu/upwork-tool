@@ -41,8 +41,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium text-gray-400">
-                                            @if(!empty($user->roles))
-                                                {{ $user->roles->pluck('name')[0] }}
+                                            @if($user->roles->first())
+                                                {{ $user->roles->first()->name }}
                                             @else
                                                 No Role
                                             @endif
