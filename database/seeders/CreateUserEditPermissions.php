@@ -19,8 +19,5 @@ class CreateUserEditPermissions extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         Permission::create(['name' => 'edit role']);
-
-        $admin = Role::findByName('super-admin');
-        $admin->givePermissionTo(Permission::all());
     }
 }
