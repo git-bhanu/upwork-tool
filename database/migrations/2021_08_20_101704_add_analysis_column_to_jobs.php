@@ -14,7 +14,8 @@ class AddAnalysisColumnToJobs extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            //
+            $table->longText('analysis')->nullable();
+            $table->timestamp('qualified_date')->nullable();
         });
     }
 

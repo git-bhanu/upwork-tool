@@ -62,7 +62,7 @@ class SingleJob extends Component
      *
      * @var 'Date String'
      */
-    public $created;
+    public $qualified_date;
     public $upwork_created_date;
 
     /**
@@ -79,7 +79,7 @@ class SingleJob extends Component
         $this->url = $job->qualified;
         $this->applied_by = $job->applied_by;
         $this->job_type = Str::of($job->job_type)->ucfirst();
-        $this->created = $job->created_at;
+        $this->qualified_date = $job->qualified_date;
         $this->upwork_created_date = $job->upwork_created_date;
     }
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Upwork\API\Routers\Auth;
 
 class JobController extends Controller
 {
@@ -62,16 +64,24 @@ class JobController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Job $job)
+    public static function updateAnalysis($analysis, $job_id)
     {
-        //
+        $qualified = false;
+
+        if ( empty($analysis) ) {
+            $qualified = true;
+        }
+
+        if (\auth()->user()) {
+            Job::where('id', $job_id)
+                ->update(
+                    array (
+                        'analysis' => $analysis,
+                        'qualified_date' => Carbon::now(),
+                        'qualified' => $qualified,
+                    )
+                );
+        }
     }
 
     /**

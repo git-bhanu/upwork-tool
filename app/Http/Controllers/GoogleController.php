@@ -42,6 +42,10 @@ class GoogleController extends Controller
 
                 Auth::login($finduser);
 
+                if (count(Auth::user()->roles) === 0) {
+                    Auth::user()->syncRoles('sales-associate');
+                }
+
                 return redirect()->intended('dashboard');
 
             } else {
@@ -53,6 +57,10 @@ class GoogleController extends Controller
                 ]);
 
                 Auth::login($newUser);
+
+                if (count(Auth::user()->roles) === 0) {
+                    Auth::user()->syncRoles('sales-associate');
+                }
 
                 return redirect()->intended('dashboard');
             }

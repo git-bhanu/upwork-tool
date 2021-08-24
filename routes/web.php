@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,18 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/analyze', function () {
         return view('analyze');
     })->name('analyze');
+
+    // Only super admin enabled routes.
+    Route::group(['middleware' => ['role:super-admin']], function ()   {
+        Route::get('/users/{user}', [UserController::class, 'show'])->name('user.single');
+
+        Route::get('/users', function () {
+            return view('users');
+        })->name('users');
+
+
+    });
+
 });
 
 require __DIR__.'/auth.php';

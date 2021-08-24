@@ -38,7 +38,7 @@
             <p class="text-sm text-gray-900">{{ __('Bhanu Singh') }}</p>
         </div>
             <div>
-                <p class="text-xs text-gray-500"> on : {{ $created }}</p>
+                <p class="text-xs text-gray-500"> on : {{ $qualified_date }}</p>
             </div>
         @else
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -49,7 +49,11 @@
         </div>
     </td>
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium">
-        <p class="text-gray-500">{{ $created }}</p>
+        @if($qualified_date)
+            <p class="text-gray-500">{{ $qualified_date }}</p>
+        @else
+            <p class="text-gray-500">N/A</p>
+        @endif
     </td>
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium">
         <p class="text-gray-500">{{ $upwork_created_date }}</p>

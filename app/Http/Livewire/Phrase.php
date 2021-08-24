@@ -47,14 +47,10 @@ class Phrase extends Component
     public function deleteWord($id)
     {
         $phrase = Phrases::findOrFail($id);
-
-        if ($phrase->user != null) {
-            if (Auth::user()->id === $phrase->user->id) {
-                $phrase->delete();
-            } else {
-                session()->flash('error', 'You are not authorized to delete '. $phrase->name . ' Phrase');
-            }
-        }
-
-    }
+        if (Auth::user()->hasPermissionTo('delete phrases')) {
+            $phrase->delete();
+        } else {
+            session()->flash('error', 'You are not allowed to delete phrases.');
+       }
+}
 }

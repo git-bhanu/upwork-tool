@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
                         {{ __('Analyze') }}
                     </x-nav-link>
+                    @can('edit role')
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('analyze')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
