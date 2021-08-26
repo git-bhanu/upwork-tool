@@ -27,7 +27,7 @@ class JobFactory extends Factory
             'description' => $this->faker->text(4000),
             'job_type' => $this->faker->randomElement(['fixed-price', 'hourly']),
             'job_url' => $this->faker->url(),
-            'qualified' => $this->faker->boolean(100),
+            'status' => $this->faker->randomElement(['failed', 'passed']),
             'applied_date' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null),
             'upwork_created_date' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null),
             'created_at' => $this->faker->dateTimeBetween('-20 days', now())

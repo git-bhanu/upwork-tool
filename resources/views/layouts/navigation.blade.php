@@ -22,10 +22,19 @@
                         {{ __('Analyze') }}
                     </x-nav-link>
                     @can('edit role')
-                    <x-nav-link :href="route('users')" :active="request()->routeIs('analyze')">
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-nav-link>
                     @endcan
+                    @hasanyrole('super-admin|sales-manager')
+                        <x-nav-link :href="route('reviewList.index')" :active="request()->routeIs('reviewList.index')">
+                            {{ __('Review List') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('review.index')" :active="request()->routeIs('review.index')">
+                            {{ __('My Reviews') }}
+                            <span class="ml-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">{{ Auth::user()->openReviews()->get()->count() }}</span>
+                        </x-nav-link>
+                    @endhasanyrole
                 </div>
             </div>
 
@@ -35,7 +44,9 @@
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                    <div>{{ Auth::user()->name }}</div>
+                                    <div>
+                                        <x-user-name :user="Auth::user()"/>
+                                    </div>
 
                                     <div class="ml-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -86,13 +97,19 @@
             <x-responsive-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
                 {{ __('Analyze') }}
             </x-responsive-nav-link>
+
+            @hasanyrole('super-admin|sales-manager')
+            <x-responsive-nav-link :href="route('reviewList.index')" :active="request()->routeIs('reviewList.index')">
+                {{ __('Review List') }}
+            </x-responsive-nav-link>
+            @endhasanyrole
         </div>
 
         @auth
             <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200">
                     <div class="px-4">
-                        <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                        <div class="font-medium text-base text-gray-800"><x-user-name :user="Auth::user()"/></div>
                         <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                     </div>
 

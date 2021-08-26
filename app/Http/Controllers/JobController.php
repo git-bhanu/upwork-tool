@@ -66,10 +66,10 @@ class JobController extends Controller
 
     public static function updateAnalysis($analysis, $job_id)
     {
-        $qualified = false;
+        $qualified = 'failed';
 
         if ( empty($analysis) ) {
-            $qualified = true;
+            $qualified = 'passed';
         }
 
         if (\auth()->user()) {
@@ -78,7 +78,7 @@ class JobController extends Controller
                     array (
                         'analysis' => $analysis,
                         'qualified_date' => Carbon::now(),
-                        'qualified' => $qualified,
+                        'status' => $qualified,
                     )
                 );
         }

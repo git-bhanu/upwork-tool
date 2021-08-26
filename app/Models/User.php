@@ -59,4 +59,23 @@ class User extends Authenticatable implements Commentator
     {
         return false;
     }
+
+    public function reviews()
+    {
+        return $this->belongsToMany(Review::class, 'review_user')->withTimestamps();
+    }
+
+
+    public function review_lists()
+    {
+        return $this->hasMany(ReviewList::class);
+    }
+
+    public function openReviews()
+    {
+        return $this->belongsToMany(Review::class, 'review_user')
+            ->whereStatus(false)
+            ->latest()
+            ->withTimestamps();
+    }
 }

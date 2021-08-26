@@ -13,4 +13,5 @@ class Users extends Component
             'users' => User::latest()->paginate(20)
         ]);
     }
+
 }

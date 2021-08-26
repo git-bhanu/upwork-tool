@@ -34,7 +34,7 @@ class SingleJob extends Component
      *
      * @var string
      */
-    public $analysis;
+    public $status;
 
     /**
      * Job URL
@@ -75,7 +75,7 @@ class SingleJob extends Component
         $this->id = $job->id;
         $this->title = Str::limit($job->title, 55);
         $this->description = Str::limit($job->description, 40);
-        $this->analysis = $job->qualified;
+        $this->status = $job->status;
         $this->url = $job->qualified;
         $this->applied_by = $job->applied_by;
         $this->job_type = Str::of($job->job_type)->ucfirst();

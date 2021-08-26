@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Job::factory(100)->create();
+        \App\Models\Job::factory(20)->create();
+        \App\Models\User::factory(5)->create();
 
         $this->call([
             CreateUserRolesAndPermissions::class,

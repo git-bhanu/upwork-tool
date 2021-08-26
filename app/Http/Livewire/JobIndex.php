@@ -77,42 +77,56 @@ class JobIndex extends Component
     public function updatingIds($value) {
         if ($value != '') {
             $this->filtered['ids'] = array('label' => "ID", 'value' =>  $value);
+        } else {
+            unset($this->filtered['ids']);
         }
     }
 
     public function updatingType($value) {
         if ($value != '') {
             $this->filtered['type'] = array('label' => "Job Type", 'value' => $value);
+        } else {
+            unset($this->filtered['type']);
         }
     }
 
     public function updatingAppliedDate($value) {
         if ($value != '') {
             $this->filtered['applied_date'] = array('label' => "Applied Date", 'value' => $value);
+        } else {
+            unset($this->filtered['applied_date']);
         }
     }
 
     public function updatingAppliedBy($value) {
         if($value != '') {
             $this->filtered['applied_by'] = array('label' => "Applied By", 'value' =>  $this->findValueByKey($this->applied_options, $value));
+        } else {
+            unset($this->filtered['applied_by']);
         }
     }
 
    public function updatingUpworkCreatedDate($value) {
        if($value != '') {
            $this->filtered['upwork_created_date'] = array('label' => "Job Created Date", 'value' => $value);
+       } else {
+           unset($this->filtered['upwork_created_date']);
        }
     }
 
     public function updatingCreatedOn($value) {
         if($value != '') {
             $this->filtered['created_on'] = array('label' => "Qualified Date", 'value' => $value);
+        } else {
+            unset($this->filtered['created_on']);
         }
     }
 
     public function updatingQualificationStatus($value) {
         if($value != '') {
-            $this->filtered['qualification_status'] = array('label' => "Qualification Status", 'value' => $value);
+            $this->filtered['qualification_status'] = array('label' => "Job Status", 'value' => $value);
+        } else {
+            unset($this->filtered['qualification_status']);
         }
     }
 
@@ -148,7 +162,7 @@ class JobIndex extends Component
                 $query->whereIn('id', explode(",",$this->ids));
             })
             ->when(!($this->qualification_status == ''), function ($query) {
-                $query->where('qualified', $this->qualification_status);
+                $query->where('status', $this->qualification_status);
             })
             ->when($this->created_on, function ($query) {
                 $created_on = $this->getDateArray($this->created_on);

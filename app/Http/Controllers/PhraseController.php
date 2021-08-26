@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Phrases;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhraseController extends Controller
 {
@@ -29,16 +30,6 @@ class PhraseController extends Controller
         return view('phrase.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

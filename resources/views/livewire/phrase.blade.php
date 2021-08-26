@@ -1,7 +1,4 @@
 <div class="p-6">
-
-    <x-validation></x-validation>
-
     <div class="my-4">
         <h2 class="text-gray-800 font-medium text-3xl"> List of Phrases </h2>
     </div>
@@ -12,10 +9,10 @@
                 <div class="mb-4">
                     <div>
                         <x-label for="name" :value="__('Add New Word')" />
-                        <x-input id="name" wire:model="word" class="block mt-1 w-full" type="text" name="name" autofocus />
+                        <x-input id="name" wire:model.lazy="word" class="block mt-1 w-full" type="text" name="name" autofocus />
                         @error('word') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                     </div>
-                    <x-button  class="mt-3 @if($word == null) disabled @endif "  wire:click="saveWord" wire:loading.remove>
+                    <x-button  class="mt-3 @if($word == null) disabled @endif "  wire:click.lazy="saveWord" wire:loading.remove >
                         {{ __('Add Word') }}
                     </x-button>
                 </div>

@@ -17,6 +17,12 @@
                 </div>
                 <div class="w-1/3">
                     @livewire('job-actions', ['job_id' => $job->id])
+
+                    @hasanyrole('sales-manager|super-admin')
+                        @livewire('review.manual-status', ['job' => $job])
+                    @endhasanyrole
+
+                    @livewire('review.create', ['job' => $job])
                 </div>
             </div>
         </div>

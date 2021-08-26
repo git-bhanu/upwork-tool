@@ -46,7 +46,7 @@ class GoogleController extends Controller
                     Auth::user()->syncRoles('sales-associate');
                 }
 
-                return redirect()->intended('dashboard');
+                return redirect()->route('dashboard');
 
             } else {
                 $newUser = User::create([
@@ -62,7 +62,7 @@ class GoogleController extends Controller
                     Auth::user()->syncRoles('sales-associate');
                 }
 
-                return redirect()->intended('dashboard');
+                return redirect()->route('dashboard');
             }
 
         } catch (Exception $e) {

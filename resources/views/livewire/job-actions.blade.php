@@ -26,23 +26,23 @@
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt class="text-sm font-medium text-gray-500">
-                        Qualification Status
+                        Status
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex flex-col items-start justify-center">
-                        @if($qualified)
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                {{ 'Passed on : '. $qualified_date }}
-                </span>
+
+                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ config('job_status.color.' . $status . '.bg_color') }} {{ config('job_status.color.' . $status . '.color') }}">
+                        {{ $status }}
+                    </span>
+
+                        @if($job->status === config('job_status.status.0') || $job->status === config('job_status.status.1'))
+                            <button wire:click="reAnalyze()" class="flex text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded-full text-xs mt-2 justify-start">
+                                Re-analyze
+                            </button>
                         @else
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                {{ 'Failed on : '. $qualified_date }}
-                </span>
+                            <x-info>
+                                Re-analysis is not possible in {{ $job->status }} status.
+                            </x-info>
                         @endif
-
-                        <button wire:click="reAnalyze()" class="flex text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded-full text-xs mt-2 justify-start">
-                            Re-analyze
-                        </button>
-
                     </dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

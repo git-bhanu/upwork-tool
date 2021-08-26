@@ -28,9 +28,16 @@
             {{-- Qualification status --}}
             <div>
                 @php
-                    $options = [['key'=> '', 'value' => 'All'], ['key'=> '1', 'value' => 'Passed'],['key'=> '0', 'value' => 'Failed']];
+                    $options = [['key'=> '', 'value' => 'All'],
+                        ['key'=> 'passed', 'value' => 'Passed'],
+                        ['key'=> 'failed', 'value' => 'Failed'],
+                        ['key'=> 'under-review', 'value' => 'Under Review'],
+                        ['key'=> 'review-passed', 'value' => 'Review Passed'],
+                        ['key'=> 'review-failed', 'value' => 'Review Failed'],
+                        ['key'=> 'manual-pass', 'value' => 'Manual Pass'],
+                        ];
                 @endphp
-                <x-label for="name" :value="__('Qualification status')" />
+                <x-label for="name" :value="__('Job Status')" />
                 <x-select id="name" wire:model.lazy="qualification_status" class="block mt-1 w-full" type="text"  :options="$options"/>
             </div>
 
