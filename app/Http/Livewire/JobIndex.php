@@ -44,8 +44,8 @@ class JobIndex extends Component
 
     public $upwork_created_date;
 
-    public $orderBy = 'id';
-    public $sortBy = 'asc';
+    public $orderBy = 'upwork_created_date';
+    public $sortBy = 'desc';
 
     public $filtered = [];
 
