@@ -21,7 +21,7 @@ class CreateReviewForm extends Component
 
     public function mount(Job $job) {
         $this->job = $job;
-        $this->reasons = ReviewList::where('type', 'under-review')->get();
+        $this->reasons = ReviewList::where('type', 'under-review')->whereShow(true)->get();
         $this->reviewers = User::role('sales-manager')->get();
     }
 

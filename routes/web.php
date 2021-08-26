@@ -48,19 +48,21 @@ Route::group(['middleware' => 'auth'], function() {
 
         // Only super admin enabled routes.
         Route::group(['middleware' => ['role:super-admin']], function ()   {
+
             Route::get('/users/{user}', [UserController::class, 'show'])
                 ->name('user.single');
 
             Route::get('/users', function () {
                 return view('users');
             })->name('users');
+
+            Route::get('/review-list', [ReviewListController::class, 'index'])->name('reviewList.index');
+            Route::get('/review-list/create', [ReviewListController::class, 'create'])->name('reviewList.create');
+            Route::post('/review-list/store', [ReviewListController::class, 'store'])->name('reviewList.store');
         });
 
         // Only super admin and sales-manager enabled routes.
         Route::group(['middleware' => ['role:super-admin|sales-manager']], function () {
-            Route::get('/review-list', [ReviewListController::class, 'index'])->name('reviewList.index');
-            Route::get('/review-list/create', [ReviewListController::class, 'create'])->name('reviewList.create');
-            Route::post('/review-list/store', [ReviewListController::class, 'store'])->name('reviewList.store');
             Route::get('/my-reviews', [ReviewController::class, 'index'])->name('review.index');
         });
     });

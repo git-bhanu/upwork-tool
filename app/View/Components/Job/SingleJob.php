@@ -76,7 +76,7 @@ class SingleJob extends Component
         $this->title = Str::limit($job->title, 55);
         $this->description = Str::limit($job->description, 40);
         $this->status = $job->status;
-        $this->url = $job->qualified;
+        $this->url = $job->link();
         $this->applied_by = $job->applied_by;
         $this->job_type = Str::of($job->job_type)->ucfirst();
         $this->qualified_date = $job->qualified_date;

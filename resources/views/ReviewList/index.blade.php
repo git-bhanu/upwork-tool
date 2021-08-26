@@ -34,6 +34,9 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Added By
                                         </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Show
+                                        </th>
                                         <th scope="col" class="relative px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left">
                                             <span class="sr-only">Edit</span>
                                             Actions
@@ -63,6 +66,13 @@
                                                         <x-user-name :user="$item->user"/>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                @if($item->show)
+                                                    <p>Show</p>
+                                                @else
+                                                    <p>Don't show</p>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                                                 <p class="text-sm text-gray-300"> Coming Soon </p>

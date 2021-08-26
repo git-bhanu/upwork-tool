@@ -46,7 +46,8 @@ class ReviewListController extends Controller
             abort(401);
         }
 
-        $request->request->add([ 'user_id' => Auth::user()->id ]);
+        $request->request->add([ 'user_id' => Auth::user()->id]);
+        $request->request->add([ 'show' => 1 ]);
 
         ReviewList::create($request->all());
 

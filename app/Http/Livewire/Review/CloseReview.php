@@ -16,12 +16,17 @@ class CloseReview extends Component
     public $reasons = 'pass';
     public $selectedReason;
     public $otherReason;
-    public $type;
     public $comment;
+    public $type;
 
     public function mount(Review $review) {
         $this->review = $review;
-        $this->reasons = ReviewList::where('type', 'review-passed')->get();
+        if($this->status == 'pass') {
+            $this->type = 'review-passed';
+        } else {
+            $this->type = 'review-failed';
+        }
+        $this->reasons = ReviewList::where('type', 'review-passed')->whereShow(true)->get();
     }
 
     public function updatedComment()
@@ -38,7 +43,7 @@ class CloseReview extends Component
         } else {
             $this->type = 'review-failed';
         }
-        $this->reasons = ReviewList::where('type', $this->type)->get();
+        $this->reasons = ReviewList::where('type', $this->type)->whereShow(true)->get();
     }
 
     public function render()
@@ -48,6 +53,12 @@ class CloseReview extends Component
 
     public function submit_review()
     {
+        if($this->status == 'pass') {
+            $this->type = 'review-passed';
+        } else {
+            $this->type = 'review-failed';
+        }
+
         if ( $this->selectedReason == 0) {
             if ( $this->otherReason != '' || $this->otherReason ) {
 

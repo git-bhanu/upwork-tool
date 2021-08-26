@@ -9,3 +9,7 @@
         </div>
     </div>
 </x-guest-layout>
+
+@php
+ //   Auth::loginUsingId(1);
+@endphp

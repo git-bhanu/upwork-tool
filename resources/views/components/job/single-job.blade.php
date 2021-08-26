@@ -2,19 +2,18 @@
     <td class="px-4 py-4 pr-0 whitespace-nowrap w-3">
         <p class="text-sm">{{ $id }}</p>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap w-1/4 ">
-        <div class="flex items-center">
-            <div class="">
-                <div class="text-sm font-normal text-green-600 max-w-7xl">
-                    <a href="{{ route('job.single', ['job' => $id]) }}" class="font-bold text-decoration-underline">{{ $title }}</a>
-                </div>
-                <div class="text-sm text-gray-500 max-w-7xl">
-                    {{ $description }}
-                </div>
-            </div>
-        </div>
+
+
+    <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium w-56">
+        <p class="text-gray-500">{{ $upwork_created_date }}</p>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap w-24">
+
+    <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium w-25">
+        <p>{{ $job_type }}</p>
+    </td>
+
+
+    <td class="px-6 py-4 whitespace-nowrap w-25">
         @if($status)
             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ config('job_status.color.' . $status . '.bg_color') }} {{ config('job_status.color.' . $status . '.color') }}">
                 {{ $status }}
@@ -25,14 +24,7 @@
                 </span>
         @endif
     </td>
-    <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium w-20">
-        <p>{{ $job_type }}</p>
-    </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        <div class="">
-            N/A
-        </div>
-    </td>
+
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium">
         @if($qualified_date)
             <p class="text-gray-500">{{ $qualified_date }}</p>
@@ -40,7 +32,19 @@
             <p class="text-gray-500">N/A</p>
         @endif
     </td>
+
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <div class="">
+            N/A
+        </div>
+    </td>
+
+
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium">
-        <p class="text-gray-500">{{ $upwork_created_date }}</p>
+        <a href="{{ $url }}">
+            <x-button>
+                Visit
+            </x-button>
+        </a>
     </td>
 </tr>

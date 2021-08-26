@@ -199,7 +199,8 @@ class JobIndex extends Component
     }
 
     public function removeFilter($action) {
-            $this->$action = '';
-            unset($this->filtered[$action]);
+        // dd($this->filtered[$action]);
+        $this->$action = '';
+        unset( $this->filtered[$action]);
     }
 }
