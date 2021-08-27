@@ -122,13 +122,8 @@
                                 </th>
 
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <div  wire:click="sortData('qualified')" class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'qualified') font-bold text-green-500 @endif">
+                                    <div class="flex items-center cursor-pointer hover:text-green-500 @if($orderBy == 'qualified') font-bold text-green-500 @endif">
                                         STATUS
-                                        @if($sortBy === 'asc')
-                                            <x-down-arrow/>
-                                        @else
-                                            <x-up-arrow/>
-                                        @endif
                                     </div>
                                 </th>
 
