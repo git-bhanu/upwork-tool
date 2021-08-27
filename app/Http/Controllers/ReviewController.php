@@ -48,6 +48,9 @@ class ReviewController extends Controller
         if (Auth::user()->hasRole('sales-associate')) {
             $reviews =  Review::where('created_by', Auth::user()->id)->orderBy('status', 'ASC')->latest()->paginate(10);
         }
+        if (Auth::user()->hasRole('super-admin')) {
+            $reviews =  Review::latest()->paginate(10);
+        }
 
             return view('review.index', compact(['reviews']) );
     }

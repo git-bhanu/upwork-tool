@@ -21,8 +21,13 @@
 
                     @hasanyrole('super-admin|sales-manager|sales-associate')
                     <x-nav-link :href="route('review.index')" :active="request()->routeIs('review.index')">
+                        @hasanyrole('sales-associate|sales-manager')
                         {{ __('My Reviews') }}
-                        @hasanyrole('super-admin|sales-manager')
+                        @endhasanyrole
+                        @hasanyrole('super-admin')
+                        {{ __('All Reviews') }}
+                        @endhasanyrole
+                        @hasanyrole('sales-manager')
                         <span class="ml-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">{{ Auth::user()->openReviews()->get()->count() }}</span>
                         @endhasanyrole
                     </x-nav-link>
@@ -103,8 +108,13 @@
             @hasanyrole('super-admin|sales-manager|sales-associate')
             <x-responsive-nav-link :href="route('review.index')" :active="request()->routeIs('review.index')">
                 <div class="flex">
+                    @hasanyrole('sales-associate|sales-manager')
                     {{ __('My Reviews') }}
-                    @hasanyrole('super-admin|sales-manager')
+                    @endhasanyrole
+                    @hasanyrole('super-admin')
+                    {{ __('All Reviews') }}
+                    @endhasanyrole
+                    @hasanyrole('sales-manager')
                     <span class="ml-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">{{ Auth::user()->openReviews()->get()->count() }}</span>
                     @endhasanyrole
                 </div>
