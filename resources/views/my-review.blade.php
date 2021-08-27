@@ -13,7 +13,3 @@
         </div>
     </div>
 </x-app-layout>
-
-@php
-
-@endphp

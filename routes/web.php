@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function() {
         });
 
         // Only super admin and sales-manager enabled routes.
-        Route::group(['middleware' => ['role:super-admin|sales-manager']], function () {
+        Route::group(['middleware' => ['role:super-admin|sales-manager|sales-associate']], function () {
             Route::get('/my-reviews', [ReviewController::class, 'index'])->name('review.index');
         });
     });

@@ -65,7 +65,6 @@ class User extends Authenticatable implements Commentator
         return $this->belongsToMany(Review::class, 'review_user')->withTimestamps();
     }
 
-
     public function review_lists()
     {
         return $this->hasMany(ReviewList::class);
