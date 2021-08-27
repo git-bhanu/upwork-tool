@@ -24,9 +24,11 @@
                         @hasanyrole('sales-associate|sales-manager')
                         {{ __('My Reviews') }}
                         @endhasanyrole
+
                         @hasanyrole('super-admin')
                         {{ __('All Reviews') }}
                         @endhasanyrole
+
                         @hasanyrole('sales-manager')
                         <span class="ml-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">{{ Auth::user()->openReviews()->get()->count() }}</span>
                         @endhasanyrole
