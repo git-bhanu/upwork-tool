@@ -170,6 +170,9 @@
                 </div>
             </div>
         </div>
+        <div class="bg-yellow-200 text-yellow-700">
+
+        </div>
         <div class="my-4 flex justify-center">
             @if($jobs->count() < $count)
                 <x-button wire:click="load()">
