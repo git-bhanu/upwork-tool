@@ -1,5 +1,5 @@
-<div class="flex">
-    <div class="w-3/12">
+<div class="flex flex-col md:flex-row md:flex-nowrap">
+    <div class="md:w-3/12 w-full">
         <div class="my-4 px-6 grid grid-cols-1 gap-4">
             {{-- Ids --}}
             <div>
@@ -64,7 +64,7 @@
         </div>
     </div>
 
-    <div class="w-9/12 pr-4">
+    <div class="w-full md:w-9/12 pr-4 md:w-full">
         <div class="px-6 pt-4">
             <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />

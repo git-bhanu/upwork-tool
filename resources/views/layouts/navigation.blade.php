@@ -18,11 +18,6 @@
                     <x-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
                         {{ __('Phrases') }}
                     </x-nav-link>
-                    @can('edit role')
-                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                        {{ __('Users') }}
-                    </x-nav-link>
-                    @endcan
 
                     @hasanyrole('super-admin|sales-manager')
                     <x-nav-link :href="route('review.index')" :active="request()->routeIs('review.index')">
@@ -37,6 +32,11 @@
                         <x-nav-link :href="route('reviewList.index')" :active="request()->routeIs('reviewList.index')">
                             {{ __('Review List') }}
                         </x-nav-link>
+                        @can('edit role')
+                            <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                                {{ __('Users') }}
+                            </x-nav-link>
+                        @endcan
                     @endhasanyrole
                 </div>
             </div>
@@ -97,15 +97,24 @@
             <x-responsive-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
                 {{ __('Phrases') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
-                {{ __('Analyze') }}
-            </x-responsive-nav-link>
 
             @hasanyrole('super-admin|sales-manager')
+            <x-responsive-nav-link :href="route('review.index')" :active="request()->routeIs('review.index')">
+                <div class="flex">
+                    {{ __('My Reviews') }}
+                    <span class="ml-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">{{ Auth::user()->openReviews()->get()->count() }}</span>
+                </div>
+            </x-responsive-nav-link>
+            @endhasanyrole
+            @hasanyrole('super-admin')
             <x-responsive-nav-link :href="route('reviewList.index')" :active="request()->routeIs('reviewList.index')">
                 {{ __('Review List') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
+                {{ __('Analyze') }}
+            </x-responsive-nav-link>
             @endhasanyrole
+
         </div>
 
         @auth
