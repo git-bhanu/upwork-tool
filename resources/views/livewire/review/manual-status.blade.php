@@ -1,12 +1,12 @@
 <div id="manual-status">
-    @if($job->status === config('job_status.status.2') || $job->status === config('job_status.status.0'))
+    @if($job->status === config('job_status.status.2') || $job->status === config('job_status.status.0') || $job->status === config('job_status.status.3'))
         @if($job->status === config('job_status.status.0'))
             <x-info>
                 Manual Status change not possible and job is already passed.
             </x-info>
         @else
             <x-info>
-                You cannot change the status of the job manually, when the status of the job is under review.
+                You cannot manually pass the job, when the status of the job is under {{ $job->status }}.
             </x-info>
         @endif
     @else
