@@ -26,7 +26,7 @@
 
         <div class="my-5">
             <x-label :value="__('Add Comment if necessary.')" />
-            <textarea class="w-full" name="comment" id="comment" rows="6" wire:model.lazy="comment" placeholder="Add a comment to the review if necessary. Limit 500">
+            <textarea class="w-full" name="comment" id="comment" rows="6" wire:model="comment" placeholder="Add a comment to the review if necessary. Limit 500">
                 </textarea>
             <p class="text-sm text-green-300 mb-4"> ( {{ strlen($comment) }} / 500 )</p>
             <p class="text-xs text-gray-300 mt-2">Keep the comment short and to the point.</p>

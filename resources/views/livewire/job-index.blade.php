@@ -64,16 +64,16 @@
         </div>
     </div>
 
-    <div class="w-full md:w-9/12 pr-4 md:w-full">
-        <div class="px-6 pt-4">
-            <h3 class="font-bold text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <div class="w-full md:w-9/12 md:w-full">
+        <div class="pt-4 mb-4">
+            <h3 class="text-3xl text-green-500">{{ $count }} Result{{ $count > 1 ? 's': ''  }} Found <span wire:loading class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
 </svg></span></h3>
         </div>
 
         @if(!empty($filtered))
             <div class="border-gray-300 pt-3">
-                <div class="px-6 flex flex-wrap">
+                <div class="flex flex-wrap">
                     @foreach($filtered as $key => $filter)
                         <x-filter-pill  wire:click="removeFilter( '{!! $key !!}' )" :label="$filter['label']" :value="$filter['value']" :action="$key" :wire:key="$key"/>
                     @endforeach
@@ -163,7 +163,6 @@
                                         <p class="text-red-500"> No match found. </p>
                                     </td>
                                 </tr>
-
                             @endforelse
                             </tbody>
                         </table>
@@ -171,8 +170,12 @@
                 </div>
             </div>
         </div>
-        <div class="my-6 px-7">
-            {{ $jobs->links() }}
+        <div class="my-4 flex justify-center">
+            @if($jobs->count() < $count)
+                <x-button wire:click="load()">
+                    Load More
+                </x-button>
+            @endif
         </div>
     </div>
 </div>

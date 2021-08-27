@@ -49,6 +49,8 @@ class JobIndex extends Component
 
     public $filtered = [];
 
+    public $paginate = 10;
+
     protected $queryString = ['applied_by', 'type', 'ids', 'created_on', 'qualification_status', 'applied_date', 'orderBy', 'sortBy'];
 
     public function mount()
@@ -154,7 +156,6 @@ class JobIndex extends Component
 
     public function render()
     {
-
         $queryJobs = Job::when($this->type, function ($query) {
             $query->where('job_type', $this->type);
         })
@@ -180,12 +181,18 @@ class JobIndex extends Component
                     $query->whereDate('upwork_created_date', '=', date($upwork_date[0]));
                 }
             })
-            ->orderBy($this->orderBy, $this->sortBy)
-            ->paginate(20);
+            ->orderBy($this->orderBy, $this->sortBy);
+
+        $count = $queryJobs->count();
+
+        $queryJobs = $queryJobs
+            ->take($this->paginate)
+            ->get();
+
 
         return view('livewire.job-index', [
             'jobs' => $queryJobs,
-            'count' => $queryJobs->total()
+            'count' => $count,
         ]);
     }
 
@@ -202,5 +209,10 @@ class JobIndex extends Component
         // dd($this->filtered[$action]);
         $this->$action = '';
         unset( $this->filtered[$action]);
+    }
+
+    public function load()
+    {
+        $this->paginate += 10;
     }
 }
