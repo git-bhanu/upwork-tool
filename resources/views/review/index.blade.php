@@ -61,7 +61,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-blue-600 flex items-center">
-                                                        <a href="{{ $review->job()->withArchived()->get()->first()->link() }}">
+                                                        <a @if(!$review->job()->withArchived()->get()->first()->archived_at) href="{{ $review->job()->withArchived()->get()->first()->link() }}" @else href="#" @endif class="flex items-center">
                                                             #{{ $review->job()->withArchived()->get()->first()->id }} {{ \Illuminate\Support\Str::limit($review->job()->withArchived()->get()->first()->title, 20) }}
                                                             @if($review->job()->withArchived()->get()->first()->archived_at)
                                                             <span class="ml-2">
