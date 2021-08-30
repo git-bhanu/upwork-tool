@@ -38,7 +38,15 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-md font-medium text-gray-900">
+                                                        <p class="flex items-center">
                                                         #{{ $review->id }} {{ $review->open_reason()->get()->first()->title }}
+                                                            <span class="ml-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                                  <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
+                                                                  <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                                                </svg>
+                                                            </span>
+                                                        </p>
                                                         <div class="px-3 py-1 inline-flex text-xs ml-2 leading-5 font-semibold rounded-full @if($review->status) bg-red-100 text-red-600 @else bg-green-100 text-green-600 @endif">
                                                             @if($review->status == true )
                                                                 Close
