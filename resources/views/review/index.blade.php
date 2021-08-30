@@ -59,11 +59,11 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-blue-600">
-                                                        <a href="{{ $review->job()->get()->first()->link() }}">
-                                                            #{{ $review->job()->get()->first()->id }} {{ \Illuminate\Support\Str::limit($review->job()->get()->first()->title, 20) }}
+                                                        <a href="{{ $review->job()->withArchived()->get()->first()->link() }}">
+                                                            #{{ $review->job()->withArchived()->get()->first()->id }} {{ \Illuminate\Support\Str::limit($review->job()->withArchived()->get()->first()->title, 20) }}
                                                         </a>
-                                                        <div class="px-3 py-1 inline-flex text-xs ml-2 leading-5 font-semibold rounded-full {{ config('job_status.color.' . $review->job()->get()->first()->status . '.bg_color') }} {{ config('job_status.color.' . $review->job()->get()->first()->status . '.color') }}">
-                {{ $review->job()->get()->first()->status }}
+                                                        <div class="px-3 py-1 inline-flex text-xs ml-2 leading-5 font-semibold rounded-full {{ config('job_status.color.' . $review->job()->withArchived()->get()->first()->status . '.bg_color') }} {{ config('job_status.color.' . $review->job()->withArchived()->get()->first()->status . '.color') }}">
+                {{ $review->job()->withArchived()->get()->first()->status }}
                                                     </div>
 
                                                     </div>
@@ -71,7 +71,7 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                                                 @if(!$review->status)
-                                                    <a href="{{ $review->job()->get()->first()->link() . '/#review'}}">
+                                                    <a href="{{ $review->job()->withArchived()->get()->first()->link() . '/#review'}}">
                                                         <x-button>View</x-button>
                                                     </a>
                                                 @endif
