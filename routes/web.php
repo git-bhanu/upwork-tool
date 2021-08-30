@@ -35,6 +35,10 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/archived-jobs', function () {
+        return view('archive-jobs');
+    })->name('job.archive');
+
     Route::get('/upwork-job/{job}', [JobController::class, 'show'])->name('job.single');
 
 

@@ -7,11 +7,15 @@ use BeyondCode\Comments\Traits\HasComments;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use LaravelArchivable\Archivable;
 
 class Job extends Model
 {
     use HasFactory;
     use HasComments;
+    use Archivable;
+
+    protected $fillable = ['archived_at'];
 
     protected $casts = [
         'analysis' => 'array'

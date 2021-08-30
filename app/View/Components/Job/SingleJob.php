@@ -15,6 +15,9 @@ class SingleJob extends Component
      */
     public $id;
 
+
+    public $job;
+
     /**
      * Job Title
      *
@@ -73,6 +76,7 @@ class SingleJob extends Component
     public function __construct($job)
     {
         $this->id = $job->id;
+        $this->job = $job;
         $this->title = Str::limit($job->title, 55);
         $this->description = Str::limit($job->description, 40);
         $this->status = $job->status;

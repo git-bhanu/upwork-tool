@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('job.archive')" :active="request()->routeIs('job.archive')">
+                        {{ __('Archived Jobs') }}
+                    </x-nav-link>
+
+
                     <x-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
                         {{ __('Phrases') }}
                     </x-nav-link>
@@ -103,6 +109,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('job.archive')" :active="request()->routeIs('job.archive')">
+                {{ __('Archived Jobs') }}
+            </x-responsive-nav-link>
+
+
             <x-responsive-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
                 {{ __('Phrases') }}
             </x-responsive-nav-link>

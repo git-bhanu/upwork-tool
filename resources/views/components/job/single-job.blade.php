@@ -3,7 +3,6 @@
         <p class="text-sm">{{ $id }}</p>
     </td>
 
-
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium w-56">
         <p class="text-gray-500">{{ $upwork_created_date }}</p>
     </td>
@@ -41,10 +40,22 @@
 
 
     <td class="px-6 text-gray-700 py-4 whitespace-nowrap text-left text-sm font-medium">
-        <a href="{{ $url }}">
-            <x-button>
-                Visit
-            </x-button>
-        </a>
+        @if( $job->archived_at )
+{{--            @hasanyrole('super-admin|sales-manager')--}}
+{{--                <x-button wire:click="unacrhive({{ $job->id }})">--}}
+{{--                    UnArchive--}}
+{{--                </x-button>--}}
+{{--            @endhasanyrole--}}
+        <div class="pt-1">
+             <span class="text-xs"> ( archived on : {{ $job->archived_at }} ) </span>
+        </div>
+        @else
+            <a href="{{ $url }}">
+                <x-button>
+                    Visit
+                </x-button>
+            </a>
+        @endif
+
     </td>
 </tr>
