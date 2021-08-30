@@ -91,9 +91,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if($reviews)
                             <div class="my-6">
                                 {{ $reviews->links() }}
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
