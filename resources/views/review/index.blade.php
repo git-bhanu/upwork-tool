@@ -37,7 +37,7 @@
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    <div class="text-md font-medium text-gray-900">
+                                                    <div class="text-md font-medium text-gray-900 flex items-center">
                                                         <p class="flex items-center">
                                                         #{{ $review->id }} {{ $review->open_reason()->get()->first()->title }}
                                                             <span class="ml-2">
