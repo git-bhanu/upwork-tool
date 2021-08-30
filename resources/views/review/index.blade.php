@@ -70,7 +70,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                                @if(!$review->status)
+                                                @if(!$review->status && $review->job()->withArchived()->get()->first() != null)
                                                     <a href="{{ $review->job()->withArchived()->get()->first()->link() . '/#review'}}">
                                                         <x-button>View</x-button>
                                                     </a>
