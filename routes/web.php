@@ -71,4 +71,7 @@ Route::group(['middleware' => 'auth'], function() {
         });
     });
 
+
+Route::post('slack', [\App\Http\Controllers\SlackController::class, 'handle']);
+
 require __DIR__.'/auth.php';

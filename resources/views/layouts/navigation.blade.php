@@ -20,9 +20,12 @@
                         {{ __('Archived Jobs') }}
                     </x-nav-link>
 
-
                     <x-nav-link :href="route('phrases')" :active="request()->routeIs('phrases')">
                         {{ __('Phrases') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
+                        {{ __('Analyze') }}
                     </x-nav-link>
 
                     @hasanyrole('super-admin|sales-manager|sales-associate')
@@ -41,9 +44,6 @@
                     </x-nav-link>
                     @endhasanyrole
                     @hasanyrole('super-admin')
-                        <x-nav-link :href="route('analyze')" :active="request()->routeIs('analyze')">
-                            {{ __('Analyze') }}
-                        </x-nav-link>
                         <x-nav-link :href="route('reviewList.index')" :active="request()->routeIs('reviewList.index')">
                             {{ __('Review List') }}
                         </x-nav-link>

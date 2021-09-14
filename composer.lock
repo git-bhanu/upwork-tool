@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afb66dae2a13769326f41c886c8941db",
+    "content-hash": "05701715ddf99762427a764d477f25ce",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5999,6 +5999,80 @@
                 }
             ],
             "time": "2021-01-20T15:23:13+00:00"
+        },
+        {
+            "name": "vluzrmos/slack-api",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vluzrmos/laravel-slack-api.git",
+                "reference": "707db207e608590548542f5cedba1c8baed56552"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vluzrmos/laravel-slack-api/zipball/707db207e608590548542f5cedba1c8baed56552",
+                "reference": "707db207e608590548542f5cedba1c8baed56552",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~5.3 || ~6.0 || ~7.0",
+                "illuminate/cache": "~6.0 || ~7.0 || ~8.0",
+                "illuminate/support": "~6.0 || ~7.0 || ~8.0",
+                "nesbot/carbon": "1.* || 2.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vluzrmos\\SlackApi\\SlackApiServiceProvider"
+                    ],
+                    "aliases": {
+                        "SlackApi": "Vluzrmos\\SlackApi\\Facades\\SlackApi",
+                        "SlackChannel": "Vluzrmos\\SlackApi\\Facades\\SlackChannel",
+                        "SlackChat": "Vluzrmos\\SlackApi\\Facades\\SlackChat",
+                        "SlackFile": "Vluzrmos\\SlackApi\\Facades\\SlackFile",
+                        "SlackGroup": "Vluzrmos\\SlackApi\\Facades\\SlackGroup",
+                        "SlackInstantMessage": "Vluzrmos\\SlackApi\\Facades\\SlackInstantMessage",
+                        "SlackOAuth": "Vluzrmos\\SlackApi\\Facades\\SlackOAuth",
+                        "SlackOAuthV2": "Vluzrmos\\SlackApi\\Facades\\SlackOAuthV2",
+                        "SlackRealTimeMessage": "Vluzrmos\\SlackApi\\Facades\\SlackRealTimeMessage",
+                        "SlackSearch": "Vluzrmos\\SlackApi\\Facades\\SlackSearch",
+                        "SlackStar": "Vluzrmos\\SlackApi\\Facades\\SlackStar",
+                        "SlackTeam": "Vluzrmos\\SlackApi\\Facades\\SlackTeam",
+                        "SlackUser": "Vluzrmos\\SlackApi\\Facades\\SlackUser",
+                        "SlackUserAdmin": "Vluzrmos\\SlackApi\\Facades\\SlackUserAdmin"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vluzrmos\\": "src/Vluzrmos/"
+                },
+                "files": [
+                    "src/Vluzrmos/SlackApi/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vagner do Carmo",
+                    "email": "vluzrmos@gmail.com"
+                }
+            ],
+            "description": "Wrapper for Slack.com WEB API.",
+            "keywords": [
+                "laravel",
+                "lumen",
+                "slack"
+            ],
+            "support": {
+                "issues": "https://github.com/vluzrmos/laravel-slack-api/issues",
+                "source": "https://github.com/vluzrmos/laravel-slack-api/tree/v0.5.2"
+            },
+            "time": "2021-08-31T14:52:01+00:00"
         },
         {
             "name": "voku/portable-ascii",

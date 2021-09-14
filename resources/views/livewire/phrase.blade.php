@@ -4,7 +4,6 @@
     </div>
 
     <div class="w-full">
-        @can('add phrases')
             <form wire:submit.prevent="saveWord">
                 <div class="mb-4">
                     <div>
@@ -17,7 +16,6 @@
                     </x-button>
                 </div>
             </form>
-        @endcan
     </div>
 
     <div class="flex flex-col">
@@ -71,9 +69,9 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                    @can('delete phrases')
-                                    <a href="#" wire:click="deleteWord({{ $phrase->id }})" class="text-red-600 hover:text-red-900">Delete</a>
-                                    @endcan
+                                    @if($phrase->user && auth()->user()->id === $phrase->user->id)
+                                        <a href="#" wire:click="deleteWord({{ $phrase->id }})" class="text-red-600 hover:text-red-900">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
 

@@ -47,10 +47,7 @@ class Phrase extends Component
     public function deleteWord($id)
     {
         $phrase = Phrases::findOrFail($id);
-        if (Auth::user()->hasPermissionTo('delete phrases')) {
             $phrase->delete();
-        } else {
             session()->flash('error', 'You are not allowed to delete phrases.');
-       }
 }
 }

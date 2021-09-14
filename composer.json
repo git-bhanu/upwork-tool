@@ -18,7 +18,8 @@
         "livewire/livewire": "^2.5",
         "mattlibera/livewire-flash": "^0.5.1",
         "spatie/laravel-permission": "^4.3",
-        "upwork/php-upwork": "v1.4.0"
+        "upwork/php-upwork": "v1.4.0",
+        "vluzrmos/slack-api": "^0.5.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
